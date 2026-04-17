@@ -32,7 +32,7 @@ function avatarUrl(sponsor: Sponsor): string {
 <template>
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <NuxtLink to="/" class="govuk-back-link">返回主页</NuxtLink>
+      <a href="javascript:window.history.back()" class="govuk-back-link">返回</a>
       <h1 class="govuk-heading-xl govuk-!-margin-top-4">支持 MCIM</h1>
       <p class="govuk-body-l">
         MCIM 是一个免费开源的项目，你的赞助将帮助我们维持服务器运营和持续开发。
@@ -40,32 +40,29 @@ function avatarUrl(sponsor: Sponsor): string {
     </div>
   </div>
 
-  <!-- Stats -->
-  <div class="govuk-grid-row govuk-!-margin-bottom-6">
+  <div class="govuk-grid-row govuk-!-margin-bottom-8">
     <div class="govuk-grid-column-one-quarter">
       <div class="mcim-stat-box">
         <p class="govuk-heading-l govuk-!-margin-bottom-1">¥{{ totalAmount }}</p>
-        <p class="govuk-body-s">总赞助金额</p>
+        <p class="govuk-body-s govuk-!-margin-bottom-0">总赞助金额</p>
       </div>
     </div>
     <div class="govuk-grid-column-one-quarter">
       <div class="mcim-stat-box">
         <p class="govuk-heading-l govuk-!-margin-bottom-1">{{ sponsors?.length ?? 0 }}</p>
-        <p class="govuk-body-s">位赞助者</p>
+        <p class="govuk-body-s govuk-!-margin-bottom-0">位赞助者</p>
       </div>
     </div>
   </div>
 
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-  <!-- Payment -->
-  <div class="govuk-grid-row govuk-!-margin-top-6">
+  <div class="govuk-grid-row govuk-!-margin-top-8">
     <div class="govuk-grid-column-full">
       <h2 class="govuk-heading-l">支持我们</h2>
       <p class="govuk-body">选择合适的方式来支持 MCIM 的日常运营。</p>
     </div>
 
-    <!-- Stripe inline button -->
     <div class="govuk-grid-column-one-half">
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -79,7 +76,6 @@ function avatarUrl(sponsor: Sponsor): string {
       </div>
     </div>
 
-    <!-- Quick link -->
     <div class="govuk-grid-column-one-half">
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
@@ -89,9 +85,11 @@ function avatarUrl(sponsor: Sponsor): string {
           <p class="govuk-body">点击链接，跳转到安全的 Stripe 支付页面完成赞助。</p>
           <a
             href="https://donate.stripe.com/dRmcN64pEbSL6VD7gVgIo02"
-            class="govuk-button govuk-!-width-full"
+            class="govuk-button govuk-!-margin-top-2"
             target="_blank"
             rel="noopener noreferrer"
+            role="button"
+            data-module="govuk-button"
           >
             立即赞助
           </a>
@@ -100,10 +98,9 @@ function avatarUrl(sponsor: Sponsor): string {
     </div>
   </div>
 
-  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible govuk-!-margin-top-8">
 
-  <!-- Fund usage -->
-  <div class="govuk-grid-row govuk-!-margin-top-6">
+  <div class="govuk-grid-row govuk-!-margin-top-8">
     <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-l">资金用途</h2>
       <p class="govuk-body">你的每一份支持都会用于以下方面。</p>
@@ -125,10 +122,9 @@ function avatarUrl(sponsor: Sponsor): string {
     </div>
   </div>
 
-  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible govuk-!-margin-top-8">
 
-  <!-- Sponsors table -->
-  <div class="govuk-grid-row govuk-!-margin-top-6">
+  <div class="govuk-grid-row govuk-!-margin-top-8">
     <div class="govuk-grid-column-full">
       <h2 class="govuk-heading-l">感谢赞助者</h2>
       <p class="govuk-body">感谢每一位支持 MCIM 的朋友。</p>
@@ -177,15 +173,15 @@ function avatarUrl(sponsor: Sponsor): string {
 
 <style scoped>
 .mcim-stat-box {
-  border-left: 4px solid #1d70b8;
-  padding: 10px 15px;
+  border-left: 5px solid #00703c;
+  padding: 15px 20px;
   margin-bottom: 20px;
 }
 
 .mcim-sponsor-name {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .mcim-avatar {

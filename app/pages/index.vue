@@ -27,10 +27,11 @@ const curseforgePercent = computed(() => {
 </script>
 
 <template>
-  <!-- Service intro -->
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">MCIM</h1>
+      <h1 class="govuk-heading-xl">
+        Minecraft Mod 信息镜像
+      </h1>
       <p class="govuk-body-l">
         为中国大陆用户提供稳定、快速的 Minecraft Mod 信息镜像服务，支持 Modrinth 和 CurseForge API，完全兼容官方接口。
       </p>
@@ -40,6 +41,8 @@ const curseforgePercent = computed(() => {
           class="govuk-button"
           target="_blank"
           rel="noopener noreferrer"
+          role="button"
+          data-module="govuk-button"
         >
           查看 API 文档
         </a>
@@ -56,19 +59,17 @@ const curseforgePercent = computed(() => {
     </div>
   </div>
 
-  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible govuk-!-margin-top-8">
 
-  <!-- Cache stats -->
-  <div class="govuk-grid-row">
+  <div class="govuk-grid-row govuk-!-margin-top-8">
     <div class="govuk-grid-column-full">
       <h2 class="govuk-heading-l">缓存统计</h2>
     </div>
 
-    <!-- Modrinth -->
     <div class="govuk-grid-column-one-half">
       <div class="mcim-stat-panel">
         <span class="govuk-caption-m">Modrinth</span>
-        <p class="govuk-heading-xl govuk-!-margin-bottom-1">
+        <p class="govuk-heading-l govuk-!-margin-bottom-1">
           {{ stats ? formatNumber(stats.modrinth.project) : '—' }}
         </p>
         <p class="govuk-body govuk-!-margin-bottom-4">个项目已缓存</p>
@@ -78,6 +79,12 @@ const curseforgePercent = computed(() => {
             <dt class="govuk-summary-list__key govuk-body-s">版本数</dt>
             <dd class="govuk-summary-list__value govuk-body-s">
               {{ stats ? formatNumber(stats.modrinth.version) : '—' }}
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-body-s">文件数</dt>
+            <dd class="govuk-summary-list__value govuk-body-s">
+              {{ stats ? formatNumber(stats.modrinth.file) : '—' }}
             </dd>
           </div>
           <div class="govuk-summary-list__row">
@@ -97,16 +104,15 @@ const curseforgePercent = computed(() => {
           aria-valuemax="100"
           :aria-label="`Modrinth 翻译进度 ${modrinthPercent.toFixed(1)}%`"
         >
-          <div class="mcim-progress__fill" :style="{ width: modrinthPercent + '%' }" />
+          <div class="mcim-progress__fill mcim-progress__fill--modrinth" :style="{ width: modrinthPercent + '%' }" />
         </div>
       </div>
     </div>
 
-    <!-- CurseForge -->
     <div class="govuk-grid-column-one-half">
       <div class="mcim-stat-panel">
         <span class="govuk-caption-m">CurseForge</span>
-        <p class="govuk-heading-xl govuk-!-margin-bottom-1">
+        <p class="govuk-heading-l govuk-!-margin-bottom-1">
           {{ stats ? formatNumber(stats.curseforge.mod) : '—' }}
         </p>
         <p class="govuk-body govuk-!-margin-bottom-4">个 Mod 已缓存</p>
@@ -135,27 +141,27 @@ const curseforgePercent = computed(() => {
           aria-valuemax="100"
           :aria-label="`CurseForge 翻译进度 ${curseforgePercent.toFixed(1)}%`"
         >
-          <div class="mcim-progress__fill" :style="{ width: curseforgePercent + '%' }" />
+          <div class="mcim-progress__fill mcim-progress__fill--curseforge" :style="{ width: curseforgePercent + '%' }" />
         </div>
       </div>
     </div>
   </div>
 
-  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+  <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible govuk-!-margin-top-8">
 
-  <!-- Features -->
-  <div class="govuk-grid-row">
+  <div class="govuk-grid-row govuk-!-margin-top-8">
     <div class="govuk-grid-column-two-thirds">
       <h2 class="govuk-heading-l">为什么选择 MCIM？</h2>
       <p class="govuk-body">我们提供稳定、快速的 Minecraft Mod 信息镜像服务，让你的下载更加顺畅。</p>
     </div>
   </div>
 
-  <div class="govuk-grid-row govuk-!-margin-bottom-6">
+  <div class="govuk-grid-row govuk-!-margin-top-4 govuk-!-margin-bottom-8">
     <div class="govuk-grid-column-one-half">
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">镜像服务</h3>
+          <span class="govuk-tag govuk-tag--blue govuk-!-font-size-14">Mirror</span>
         </div>
         <div class="govuk-summary-card__content">
           <p class="govuk-body">
@@ -174,6 +180,7 @@ const curseforgePercent = computed(() => {
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
           <h3 class="govuk-summary-card__title">加速访问</h3>
+          <span class="govuk-tag govuk-tag--green govuk-!-font-size-14">Fast</span>
         </div>
         <div class="govuk-summary-card__content">
           <p class="govuk-body">
@@ -191,55 +198,68 @@ const curseforgePercent = computed(() => {
 
   <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-  <!-- API examples -->
-  <div class="govuk-grid-row">
+  <div class="govuk-grid-row govuk-!-margin-top-8">
     <div class="govuk-grid-column-full">
       <h2 class="govuk-heading-l">API 替换示例</h2>
       <p class="govuk-body">只需将原始 API 端点替换为镜像地址，其他代码无需任何改动。</p>
 
-      <h3 class="govuk-heading-m">Modrinth</h3>
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">原始 API</dt>
-          <dd class="govuk-summary-list__value">
-            <code class="mcim-code">https://api.modrinth.com/v2/project/sodium</code>
-          </dd>
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">Modrinth API 替换示例</span>
+        </summary>
+        <div class="govuk-details__text">
+          <dl class="govuk-summary-list govuk-summary-list--no-border">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">原始 API</dt>
+              <dd class="govuk-summary-list__value">
+                <code class="mcim-code">https://api.modrinth.com/v2/project/sodium</code>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">镜像 API</dt>
+              <dd class="govuk-summary-list__value">
+                <code class="mcim-code mcim-code--mirror">https://mod.mcimirror.top/modrinth/v2/project/sodium</code>
+              </dd>
+            </div>
+          </dl>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">镜像 API</dt>
-          <dd class="govuk-summary-list__value">
-            <code class="mcim-code mcim-code--mirror">https://mod.mcimirror.top/modrinth/v2/project/sodium</code>
-          </dd>
-        </div>
-      </dl>
+      </details>
 
-      <h3 class="govuk-heading-m">CurseForge</h3>
-      <dl class="govuk-summary-list">
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">原始 API</dt>
-          <dd class="govuk-summary-list__value">
-            <code class="mcim-code">https://api.curseforge.com/v1/mods/238222</code>
-          </dd>
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">CurseForge API 替换示例</span>
+        </summary>
+        <div class="govuk-details__text">
+          <dl class="govuk-summary-list govuk-summary-list--no-border">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">原始 API</dt>
+              <dd class="govuk-summary-list__value">
+                <code class="mcim-code">https://api.curseforge.com/v1/mods/238222</code>
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">镜像 API</dt>
+              <dd class="govuk-summary-list__value">
+                <code class="mcim-code mcim-code--mirror">https://mod.mcimirror.top/curseforge/v1/mods/238222</code>
+              </dd>
+            </div>
+          </dl>
         </div>
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">镜像 API</dt>
-          <dd class="govuk-summary-list__value">
-            <code class="mcim-code mcim-code--mirror">https://mod.mcimirror.top/curseforge/v1/mods/238222</code>
-          </dd>
-        </div>
-      </dl>
+      </details>
 
-      <div class="govuk-inset-text">
+      <div class="govuk-inset-text govuk-!-margin-top-6">
         完整的接口列表和请求参数说明，请查阅
         <a class="govuk-link" href="https://mod.mcimirror.top/docs" target="_blank" rel="noopener noreferrer">API 文档</a>。
       </div>
 
-      <div class="govuk-button-group govuk-!-margin-top-4">
+      <div class="govuk-button-group govuk-!-margin-top-6">
         <a
           href="https://mod.mcimirror.top/docs"
           class="govuk-button"
           target="_blank"
           rel="noopener noreferrer"
+          role="button"
+          data-module="govuk-button"
         >
           查看 API 文档
         </a>
@@ -258,28 +278,32 @@ const curseforgePercent = computed(() => {
 </template>
 
 <style scoped>
-/* Stats panel — left-bordered block following GOV.UK inset convention */
 .mcim-stat-panel {
-  border-left: 4px solid #0b0c0c;
-  padding: 15px 20px;
+  border-left: 5px solid #1d70b8;
+  padding: 20px 25px;
   margin-bottom: 30px;
   background-color: #ffffff;
 }
 
-/* Translation progress bar */
 .mcim-progress {
-  height: 6px;
+  height: 8px;
   background-color: #f3f2f1;
   border: 1px solid #b1b4b6;
 }
 
 .mcim-progress__fill {
   height: 100%;
-  background-color: #1d70b8;
-  transition: width 0.4s ease;
+  transition: width 0.6s ease;
 }
 
-/* Inline code blocks */
+.mcim-progress__fill--modrinth {
+  background-color: #00703c;
+}
+
+.mcim-progress__fill--curseforge {
+  background-color: #1d70b8;
+}
+
 .mcim-code {
   font-family: "Courier New", Courier, monospace;
   font-size: 0.875rem;

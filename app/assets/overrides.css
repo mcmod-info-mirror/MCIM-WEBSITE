@@ -1,0 +1,10 @@
+.govuk-link:visited,
+.govuk-header__link:visited,
+.govuk-footer__link:visited,
+a:visited {
+  color: var(--govuk-link-colour, #1d70b8);
+}
+
+.govuk-header__link:visited {
+  color: #ffffff;
+}
